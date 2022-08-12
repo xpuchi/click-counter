@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Mouse from "../src/images/mouse.png";
+import Button from "./components/Button";
+import "./stylesheets/Button.css";
+import Counter from "./components/Counter";
+import { useState } from "react";
 
 function App() {
+  const [numClicks, setNumClicks] = useState(0);
+
+  const click = () => {
+    setNumClicks(numClicks + 1);
+  };
+
+  const restartCounter = () => {
+    setNumClicks(0);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="logo-container">
+        <img className="logo" src={Mouse} alt="Logo" />
+      </div>
+      <div className="main-container">
+        <Counter numClicks={numClicks} />
+        <Button text="Click" isButtonClick={true} click={click} />
+        <Button text="Restart" isButtonClick={false} click={restartCounter} />
+      </div>
     </div>
   );
 }
